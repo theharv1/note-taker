@@ -71,5 +71,8 @@ html, body {
 
 .bg-dark{
   background-color: red !important;
-  color: #000000 im !important;
+}
+
+.navbar-brand{
+  color: #000000 !important;
 }
