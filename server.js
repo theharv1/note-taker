@@ -10,6 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Sets up the Express app to handle data parsing
+// =============================================================
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
@@ -22,11 +23,13 @@ app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 
+// Notes route that sends the user to the NOTES Page
 app.get("/notes", function (req, res) {
   res.sendFile(path.join(__dirname, "/public/notes.html"));
 
 });
 
+// API call to retrieve notes
 app.post("/api/notes", function (req, res) {
   fs.readFile(__dirname + "/db/db.json", 'utf8', function (error, notes) {
     if (error) {
@@ -59,6 +62,7 @@ app.get("/api/notes", function (req, res) {
   })
 });
 
+// API call to delete a specific note based on id
 app.delete("/api/notes/:id", function (req, res) {
   const noteId = JSON.parse(req.params.id)
   console.log(noteId)
@@ -79,6 +83,7 @@ app.delete("/api/notes/:id", function (req, res) {
   })
 })
 
+// ADD a note based on id
 app.put("/api/notes/:id", function(req, res) {
   const noteId = JSON.parse(req.params.id)
   console.log(noteId)
